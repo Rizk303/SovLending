@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Unsecured Business Loan Calculator | Sovereign Lending</title>
+  <meta name="description" content="Estimate the monthly repayments on an unsecured business loan from £5,000 to £500,000 with Sovereign Lending.">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    /* ---------- Theme (matches sovereignlending.co.uk / TemplateMo Finance Business) ---------- */
+    :root {
+      --green: #a4c639;
+      --dark: #1e1e1e;
+      --text: #666666;
+      --light: #f7f7f7;
+      --footer: #232323;
+      --subfooter: #343434;
+    }
+    *, *:before, *:after { box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Poppins', sans-serif; overflow-x: hidden; text-rendering: optimizeLegibility; color: var(--text); background: #fff; }
+    p { margin: 0; font-size: 14px; color: var(--text); line-height: 30px; }
+    a { text-decoration: none; }
+    ul { padding: 0; margin: 0; list-style: none; }
+    h1, h2, h3, h4, h5, h6 { margin: 0; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 15px; }
+
+    /* Buttons */
+    .filled-button, button.filled-button {
+      background-color: var(--green); color: #fff; font-family: inherit; font-size: 13px; text-transform: uppercase; font-weight: 700;
+      padding: 12px 30px; border-radius: 30px; display: inline-block; transition: all .3s; border: 2px solid var(--green); cursor: pointer; outline: none;
+    }
+    .filled-button:hover { background-color: #fff; color: var(--green); }
+    .border-button {
+      background-color: transparent; color: #fff; border: 2px solid #fff; font-family: inherit; font-size: 13px; text-transform: uppercase; font-weight: 700;
+      padding: 10px 28px; border-radius: 30px; display: inline-block; transition: all .3s; cursor: pointer; outline: none;
+    }
+    .border-button:hover { background-color: #fff; color: var(--green); }
+
+    .section-heading { text-align: center; margin-bottom: 60px; }
+    .section-heading h2 { font-size: 36px; font-weight: 600; color: var(--dark); }
+    .section-heading em { font-style: normal; color: var(--green); }
+    .section-heading span { display: block; margin-top: 15px; text-transform: uppercase; font-size: 15px; color: #666; letter-spacing: 1px; }
+
+    /* Sub header */
+    .sub-header { background-color: var(--green); height: 46px; line-height: 46px; }
+    .sub-header ul li { display: inline-block; }
+    .sub-header ul.left-info li { border-left: 1px solid rgba(250,250,250,.3); padding: 0 20px; color: #fff; font-size: 14px; font-weight: 600; }
+    .sub-header ul.left-info li:last-child { border-right: 1px solid rgba(250,250,250,.3); }
+    .sub-header ul.left-info li i { margin-right: 10px; font-size: 18px; vertical-align: middle; }
+    .sub-header ul.left-info li a { color: #fff; }
+
+    /* Header */
+    header { position: absolute; z-index: 99999; width: 100%; background-color: transparent; height: 80px; transition: all .3s ease-in-out; }
+    header .navbar { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; max-width: 1140px; margin: 0 auto; padding-left: 15px; padding-right: 15px; height: 80px; }
+    header.background-header { top: 0; position: fixed; background-color: #fff; box-shadow: 0 1px 10px rgba(0,0,0,.1); height: 70px; }
+    header.background-header .navbar { height: 70px; }
+    .navbar-brand h2 { color: #fff; text-transform: uppercase; font-size: 24px; font-weight: 700; transition: all .3s ease; }
+    .navbar-brand h2 em { font-style: normal; font-size: 16px; }
+    header.background-header .navbar-brand h2 { color: var(--green); }
+    .navbar-nav { display: flex; align-items: center; }
+    .navbar-nav li { margin: 0 15px; }
+    .navbar-nav a { display: inline-block; text-transform: capitalize; font-size: 15px; font-weight: 300; letter-spacing: .5px; color: #fff; transition: all .5s; padding-bottom: 2px; }
+    header.background-header .navbar-nav a { color: var(--dark); }
+    .navbar-nav a:hover, .navbar-nav a.current { color: var(--green) !important; border-bottom: 3px solid var(--green); }
+    .navbar-toggler { display: none; background: #fff; border: 0; height: 36px; width: 40px; cursor: pointer; color: var(--green); font-size: 18px; }
+
+    /* Page heading */
+    .page-heading {
+      text-align: center; color: #fff; padding: 230px 0 150px;
+      background-color: var(--footer);
+      background-image: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url(assets/images/page-heading-bg.jpg);
+      background-position: center; background-repeat: no-repeat; background-size: cover;
+    }
+    .page-heading h1 { text-transform: capitalize; font-size: 36px; font-weight: 700; letter-spacing: 2px; margin-bottom: 18px; }
+    .page-heading span { font-size: 15px; text-transform: uppercase; letter-spacing: 1px; color: #fff; display: block; }
+
+    /* Calculator section */
+    .calculator-section { margin-top: 100px; }
+    .calc-wrap { position: relative; max-width: 1000px; margin: 0 auto; }
+
+    .calc-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; background: var(--light); border-radius: 5px; overflow: hidden; transition: filter .4s, opacity .4s; }
+    .calc-wrap.locked .calc-grid { filter: blur(6px); opacity: .55; pointer-events: none; user-select: none; }
+
+    .calc-inputs { padding: 45px; }
+    .calc-inputs h4, .calc-results h4 { font-size: 20px; font-weight: 700; letter-spacing: .25px; color: var(--dark); margin-bottom: 30px; }
+
+    .field { margin-bottom: 34px; }
+    .field-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .field label { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: var(--dark); }
+    .field .value-box { display: flex; align-items: center; background: #fff; border-radius: 20px; padding: 0 15px; height: 40px; border: 1px solid #eee; }
+    .field .value-box span { font-size: 14px; font-weight: 600; color: var(--green); }
+    .field .value-box input { border: 0; outline: none; width: 90px; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--dark); background: transparent; text-align: right; padding: 0 0 0 4px; -moz-appearance: textfield; }
+    .field .value-box input::-webkit-outer-spin-button, .field .value-box input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .range-labels { display: flex; justify-content: space-between; font-size: 12px; color: #999; margin-top: 8px; }
+
+    input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 3px; background: #ddd; outline: none; cursor: pointer; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--green); border: 4px solid #fff; box-shadow: 0 1px 6px rgba(0,0,0,.25); cursor: pointer; }
+    input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--green); border: 4px solid #fff; box-shadow: 0 1px 6px rgba(0,0,0,.25); cursor: pointer; }
+
+    .calc-results { background: var(--green); color: #fff; padding: 45px; display: flex; flex-direction: column; }
+    .calc-results h4 { color: #fff; }
+    .result-main { text-align: center; background: rgba(250,250,250,.15); padding: 25px 20px 30px; margin-bottom: 20px; }
+    .result-main small { display: block; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; font-weight: 600; }
+    .result-main .big { font-size: 44px; font-weight: 700; line-height: 1.2; margin-top: 6px; }
+    .result-main .big sub { font-size: 14px; font-weight: 400; vertical-align: baseline; }
+    .result-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(250,250,250,.3); font-size: 14px; }
+    .result-row:last-of-type { border-bottom: 0; }
+    .result-row strong { font-weight: 700; }
+    .split-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin: 22px 0 8px; background: rgba(0,0,0,.15); }
+    .split-bar .p { background: #fff; transition: width .3s; }
+    .split-bar .i { background: var(--dark); transition: width .3s; }
+    .split-legend { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 25px; }
+    .split-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+    .calc-results .cta { margin-top: auto; text-align: center; }
+
+    .disclaimer { max-width: 1000px; margin: 25px auto 0; font-size: 12px; line-height: 22px; color: #888; text-align: center; }
+
+    /* Email gate (styled like the site's green call-back form) */
+    .gate { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 5; }
+    .calc-wrap:not(.locked) .gate { display: none; }
+    .gate-card { background-color: var(--green); color: #fff; padding: 50px 45px; border-radius: 5px; text-align: center; width: 100%; max-width: 520px; box-shadow: 0 15px 50px rgba(0,0,0,.25); }
+    .gate-card .lock { width: 64px; height: 64px; line-height: 64px; border-radius: 50%; background: #fff; color: var(--green); font-size: 28px; margin: 0 auto 22px; }
+    .gate-card h3 { font-size: 26px; font-weight: 600; margin-bottom: 12px; }
+    .gate-card p { color: #fff; margin-bottom: 28px; line-height: 26px; }
+    .gate-card input[type=email] {
+      width: 100%; border-radius: 20px; height: 44px; padding: 0 18px; color: #6a6a6a; font-family: inherit; font-size: 13px; border: none; outline: none; margin-bottom: 8px;
+    }
+    .gate-card ::placeholder { color: #aaa; }
+    .gate-error { min-height: 22px; font-size: 13px; font-weight: 600; color: #fff; background: rgba(0,0,0,.18); border-radius: 20px; padding: 0 14px; line-height: 30px; margin: 0 0 12px; display: none; }
+    .gate-error.show { display: block; }
+    .consent { display: flex; gap: 10px; text-align: left; font-size: 12px; line-height: 20px; margin: 10px 0 24px; }
+    .consent input { margin-top: 3px; flex: 0 0 auto; accent-color: #1e1e1e; width: 16px; height: 16px; }
+    .consent a { color: #fff; text-decoration: underline; }
+    .hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+    .gate-card .border-button { width: 100%; }
+
+    /* Eligibility strip */
+    .eligibility { margin-top: 100px; }
+    .elig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .elig-item { padding: 50px 30px; background-color: var(--light); text-align: center; }
+    .elig-item i { color: var(--green); font-size: 44px; margin-bottom: 28px; }
+    .elig-item h4 { font-size: 20px; font-weight: 700; letter-spacing: .25px; color: var(--dark); margin-bottom: 12px; }
+
+    /* Call back banner */
+    .request-form { background-color: var(--green); padding: 40px 0; color: #fff; margin-top: 100px; }
+    .request-form .inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .request-form h4 { font-size: 22px; font-weight: 600; }
+    .request-form span { font-size: 15px; font-weight: 400; display: inline-block; margin-top: 10px; }
+
+    /* Footer */
+    footer { background-color: var(--footer); padding: 80px 0; color: #fff; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+    footer h4 { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: .25px; margin-bottom: 30px; }
+    footer p { color: #fff; }
+    footer ul.menu-list li { margin-bottom: 13px; }
+    footer ul.menu-list li:last-child { margin-bottom: 0; }
+    footer ul.menu-list li a { font-size: 14px; color: #fff; transition: all .3s; }
+    footer ul.menu-list li a:hover { color: var(--green); }
+    .sub-footer { background-color: var(--subfooter); text-align: center; padding: 25px 0; }
+    .sub-footer p { color: #fff; font-weight: 300; letter-spacing: .5px; }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .navbar-toggler { display: block; }
+      .navbar-collapse { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: #fff; box-shadow: 0 10px 10px rgba(0,0,0,.1); text-align: center; }
+      header.background-header .navbar-collapse { top: 70px; }
+      .navbar-collapse.open { display: block; }
+      .navbar-nav { flex-direction: column; align-items: stretch; }
+      .navbar-nav li { margin: 0; border-bottom: 1px solid #eee; }
+      .navbar-nav li:last-child { border-bottom: 0; }
+      .navbar-nav a, header.background-header .navbar-nav a { color: var(--dark); padding: 15px 0; display: block; }
+      .navbar-nav a:hover, .navbar-nav a.current { border-bottom: 0; }
+      .calc-grid { grid-template-columns: 1fr; }
+      .elig-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .sub-header { display: none; }
+      .page-heading { padding: 170px 0 100px; }
+      .calc-inputs, .calc-results { padding: 30px 22px; }
+      .gate-card { padding: 36px 22px; }
+      .request-form .inner { justify-content: center; text-align: center; }
+      .result-main .big { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <ul class="left-info">
+        <li><i class="fa fa-clock-o"></i>Mon-Sat 09:00-17:00</li>
+        <li><a href="tel:07354007264"><i class="fa fa-phone"></i>07354 007264</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header id="site-header">
+    <nav class="navbar">
+      <a class="navbar-brand" href="index.html"><h2>Sovereign Lending</h2></a>
+      <button class="navbar-toggler" id="nav-toggle" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+      <div class="navbar-collapse" id="nav-menu">
+        <ul class="navbar-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Our Services</a></li>
+          <li><a href="loan-calculator.html" class="current">Loan Calculator</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Heading -->
+  <div class="page-heading">
+    <div class="container">
+      <h1>Business Loan Calculator</h1>
+      <span>See what your unsecured funding could cost</span>
+    </div>
+  </div>
+
+  <!-- Calculator -->
+  <section class="calculator-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Estimate your <em>repayments</em></h2>
+        <span>Unsecured funding from £5,000 up to £500,000</span>
+      </div>
+
+      <div class="calc-wrap locked" id="calc-wrap">
+        <div class="calc-grid" id="calc-grid" aria-hidden="true">
+          <div class="calc-inputs">
+            <h4>Your loan details</h4>
+
+            <div class="field">
+              <div class="field-top">
+                <label for="amount-num">Loan amount</label>
+                <div class="value-box"><span>£</span><input type="number" id="amount-num" min="5000" max="500000" step="1000" value="50000" disabled></div>
+              </div>
+              <input type="range" id="amount" min="5000" max="500000" step="1000" value="50000" disabled>
+              <div class="range-labels"><span>£5,000</span><span>£500,000</span></div>
+            </div>
+
+            <div class="field">
+              <div class="field-top">
+                <label for="term-num">Loan term (months)</label>
+                <div class="value-box"><input type="number" id="term-num" min="3" max="60" step="1" value="24" disabled><span>mths</span></div>
+              </div>
+              <input type="range" id="term" min="3" max="60" step="1" value="24" disabled>
+              <div class="range-labels"><span>3 months</span><span>60 months</span></div>
+            </div>
+
+            <div class="field" style="margin-bottom:0">
+              <div class="field-top">
+                <label for="rate-num">Interest rate (p.a.)</label>
+                <div class="value-box"><input type="number" id="rate-num" min="1" max="60" step="0.1" value="15" disabled><span>%</span></div>
+              </div>
+              <input type="range" id="rate" min="1" max="60" step="0.1" value="15" disabled>
+              <div class="range-labels"><span>1%</span><span>60%</span></div>
+            </div>
+          </div>
+
+          <div class="calc-results">
+            <h4>Your estimate</h4>
+            <div class="result-main">
+              <small>Estimated monthly repayment</small>
+              <div class="big" id="out-monthly">£0<sub>/mth</sub></div>
+            </div>
+            <div class="result-row"><span>Amount borrowed</span><strong id="out-principal">£0</strong></div>
+            <div class="result-row"><span>Total interest</span><strong id="out-interest">£0</strong></div>
+            <div class="result-row"><span>Total repayable</span><strong id="out-total">£0</strong></div>
+
+            <div class="split-bar"><div class="p" id="bar-p" style="width:50%"></div><div class="i" id="bar-i" style="width:50%"></div></div>
+            <div class="split-legend">
+              <span><i style="background:#fff"></i>Capital</span>
+              <span><i style="background:#1e1e1e"></i>Interest</span>
+            </div>
+
+            <div class="cta"><a href="contact.html" class="border-button">Get a Free Quote</a></div>
+          </div>
+        </div>
+
+        <!-- Email gate -->
+        <div class="gate" id="gate">
+          <form class="gate-card" id="gate-form" novalidate>
+            <div class="lock"><i class="fa fa-lock"></i></div>
+            <h3>Unlock the calculator</h3>
+            <p>Enter your email address to use our free unsecured business loan calculator.</p>
+
+            <input type="email" id="gate-email" name="email" placeholder="Your email address" autocomplete="email" required>
+            <input type="text" name="company_website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="gate-error" id="gate-error" role="alert"></div>
+
+            <label class="consent">
+              <input type="checkbox" id="gate-consent" required>
+              <span>I agree to Sovereign Lending contacting me by email about business funding. I can unsubscribe at any time. See our <a href="#">Privacy Policy</a>.</span>
+            </label>
+
+            <button type="submit" class="border-button" id="gate-btn">Unlock Calculator</button>
+          </form>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        This calculator provides an illustrative estimate only, based on a fixed interest rate and equal monthly repayments. It is not an offer or a quote of credit, and actual rates, fees and terms depend on your business and the lender. Sovereign Lending works only with Limited Companies and Incorporated Businesses, and is not regulated by the Financial Conduct Authority.
+      </p>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section class="eligibility">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Are you <em>eligible?</em></h2>
+        <span>Simple requirements, no complicated criteria</span>
+      </div>
+      <div class="elig-grid">
+        <div class="elig-item"><i class="fa fa-building-o"></i><h4>Limited Company</h4><p>Your business must be registered as a limited company or incorporated business.</p></div>
+        <div class="elig-item"><i class="fa fa-calendar-check-o"></i><h4>6 Months Trading</h4><p>You need a minimum of 6 months' trading history.</p></div>
+        <div class="elig-item"><i class="fa fa-gbp"></i><h4>£5,000 Monthly Sales</h4><p>Your business should be generating at least £5,000 in monthly sales.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call back -->
+  <div class="request-form">
+    <div class="container">
+      <div class="inner">
+        <div>
+          <h4>Request a call back right now ?</h4>
+          <span>You'll hear from one of our experts within 24 hours—guaranteed.</span>
+        </div>
+        <a href="contact.html" class="border-button">Contact Us</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>Sovereign Lending</h4>
+          <p>Sovereign Lending works only with Limited Companies and Incorporated Businesses, and is not regulated by the Financial Conduct Authority.</p>
+        </div>
+        <div>
+          <h4>Useful Links</h4>
+          <ul class="menu-list">
+            <li><a href="mailto:info@sovereignnetwork.co.uk">info@sovereignnetwork.co.uk</a></li>
+            <li><a href="tel:+447354007264">+447354007264</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Additional Pages</h4>
+          <ul class="menu-list">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="loan-calculator.html">Loan Calculator</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="sub-footer">
+    <div class="container"><p>Copyright &copy; Sovereign Lending Ltd.</p></div>
+  </div>
+
+  <script>
+    /* ====================================================================
+       CONFIG: where should captured emails go?
+       Paste the URL of your form service (e.g. a Formspree / Getform /
+       Make / Zapier webhook endpoint) below. Each sign-up is POSTed as
+       JSON: { email, consent, source, page, timestamp }.
+       Leave empty and the gate still works, but no email is saved anywhere.
+       ==================================================================== */
+    var EMAIL_ENDPOINT = 'https://formspree.io/f/xnpjongj';
+
+    var STORAGE_KEY = 'sl_calc_unlocked';
+    var $ = function (id) { return document.getElementById(id); };
+
+    /* ---------- Header: transparent -> white on scroll, mobile menu ---------- */
+    var header = $('site-header');
+    function onScroll() { header.classList.toggle('background-header', window.scrollY > 40); }
+    window.addEventListener('scroll', onScroll); onScroll();
+    $('nav-toggle').addEventListener('click', function () { $('nav-menu').classList.toggle('open'); });
+
+    /* ---------- Calculator ---------- */
+    var pairs = [
+      { r: $('amount'), n: $('amount-num'), min: 5000, max: 500000 },
+      { r: $('term'),   n: $('term-num'),   min: 3,    max: 60 },
+      { r: $('rate'),   n: $('rate-num'),   min: 1,    max: 60 }
+    ];
+    var gbp0 = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 });
+
+    function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
+    function calculate() {
+      var P = clamp(parseFloat($('amount').value) || 0, 5000, 500000);
+      var n = Math.round(clamp(parseFloat($('term').value) || 1, 3, 60));
+      var annual = clamp(parseFloat($('rate').value) || 0, 0, 60);
+      var r = annual / 100 / 12;
+      var pmt = r === 0 ? P / n : (P * r) / (1 - Math.pow(1 + r, -n));
+      var total = pmt * n;
+      var interest = total - P;
+
+      $('out-monthly').innerHTML = gbp0.format(pmt) + '<sub>/mth</sub>';
+      $('out-principal').textContent = gbp0.format(P);
+      $('out-interest').textContent = gbp0.format(interest);
+      $('out-total').textContent = gbp0.format(total);
+      var pctP = total > 0 ? (P / total) * 100 : 100;
+      $('bar-p').style.width = pctP + '%';
+      $('bar-i').style.width = (100 - pctP) + '%';
+    }
+
+    pairs.forEach(function (p) {
+      p.r.addEventListener('input', function () { p.n.value = p.r.value; calculate(); });
+      p.n.addEventListener('input', function () {
+        var v = parseFloat(p.n.value);
+        if (!isNaN(v)) { p.r.value = clamp(v, p.min, p.max); calculate(); }
+      });
+      p.n.addEventListener('blur', function () {
+        var v = parseFloat(p.n.value);
+        p.n.value = isNaN(v) ? p.r.value : clamp(v, p.min, p.max);
+        p.r.value = p.n.value; calculate();
+      });
+    });
+    calculate();
+
+    /* ---------- Email gate ---------- */
+    var wrap = $('calc-wrap');
+
+    function unlock() {
+      wrap.classList.remove('locked');
+      $('calc-grid').removeAttribute('aria-hidden');
+      pairs.forEach(function (p) { p.r.disabled = false; p.n.disabled = false; });
+    }
+
+    try { if (localStorage.getItem(STORAGE_KEY) === '1') unlock(); } catch (e) {}
+
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    function showError(msg) { var e = $('gate-error'); e.textContent = msg; e.classList.toggle('show', !!msg); }
+
+    $('gate-form').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var form = ev.target;
+      var email = $('gate-email').value.trim();
+
+      if (form.company_website.value) return;                // honeypot: bots fill this in
+      if (!emailRe.test(email)) { showError('Please enter a valid email address.'); $('gate-email').focus(); return; }
+      if (!$('gate-consent').checked) { showError('Please tick the box to agree to be contacted.'); return; }
+      showError('');
+
+      var btn = $('gate-btn');
+      btn.disabled = true; btn.textContent = 'Unlocking…';
+
+      var payload = {
+        email: email,
+        consent: true,
+        source: 'loan-calculator',
+        page: location.href,
+        timestamp: new Date().toISOString()
+      };
+
+      var finish = function () {
+        try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+        unlock();
+        btn.disabled = false; btn.textContent = 'Unlock Calculator';
+      };
+
+      if (EMAIL_ENDPOINT) {
+        fetch(EMAIL_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(function (res) {
+          if (!res.ok) throw new Error('bad response');
+          finish();
+        }).catch(function () {
+          showError('Something went wrong. Please check your connection and try again.');
+          btn.disabled = false; btn.textContent = 'Unlock Calculator';
+        });
+      } else {
+        finish();
+      }
+    });
+  </script>
+</body>
+</html>
